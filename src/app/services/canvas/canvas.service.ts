@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,5 +25,6 @@ export class CanvasService {
   calcHeight(percentageOfWindow: number){
     return Math.floor(window.innerHeight * percentageOfWindow / 100)
   }
+
 }
 

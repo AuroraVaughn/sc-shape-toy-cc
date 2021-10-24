@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OffscreenCanvasComponent } from './offscreen-canvas.component';
+import { AddShapeComponent } from './add-shape.component';
 
-describe('OffscreenCanvasComponent', () => {
-  let component: OffscreenCanvasComponent;
-  let fixture: ComponentFixture<OffscreenCanvasComponent>;
+describe('AddShapeComponent', () => {
+  let component: AddShapeComponent;
+  let fixture: ComponentFixture<AddShapeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OffscreenCanvasComponent ]
+      declarations: [ AddShapeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OffscreenCanvasComponent);
+    fixture = TestBed.createComponent(AddShapeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
