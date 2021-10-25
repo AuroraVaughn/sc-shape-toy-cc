@@ -1,6 +1,28 @@
-<div>
-<button>Delete</button>
-<h2></h2>
-
-
+<div [formGroup]="shapeForm">
+  <button>Delete</button>
+  <h2>{{ shape.name }}</h2>
+  <dt>Center X:</dt>
+  <dd>{{ shape.x }}</dd>
+  <dt>Center T:</dt>
+  <dd>{{ shape.y }}</dd>
+  <div *ngIf="shape.radius">
+    <label  *ngIf="shape.radius" for="radius">Radius:</label>
+    <input
+      formControlName="radius"
+      name="radius"
+      type="number"
+    />
+  </div>
+  <div *ngIf="shape.width">
+    <label for="width">Width:</label>
+    <input name="width" type="number" formControlName="width" />
+  </div>
+  <div *ngIf="shape.height">
+    <label for="height">Height:</label>
+    <input name="height" type="number" formControlName="height" />
+  </div>
+  <div >
+    <label for="color">Color</label>
+    <input name="color" type="color" formControlName="fillColor"  />
+  </div>
 </div>
