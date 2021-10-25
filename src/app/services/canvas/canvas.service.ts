@@ -114,17 +114,16 @@ export class CanvasService implements OnDestroy {
     this.draw();
   };
 
-  moveSelected = (e: MouseEvent) => {
-    e.preventDefault();
-    const mouse = this.getMousePosistion(e);
-    console.log(e);
-    this.selectedShapes.forEach((shape) => {
-      // TODO: Fix this to work in chrome. movement is bugged
-      shape.x += e.movementX;
-      shape.y += e.movementY;
-    });
-    this.draw();
-  };
+    moveSelected = (e: MouseEvent) => {
+      e.preventDefault();
+      const mouse = this.getMousePosistion(e);
+      this.selectedShapes.forEach((shape) => {
+        // TODO: Fix this to work in chrome. movement is bugged
+        shape.x += e.movementX;
+        shape.y += e.movementY;
+      });
+      this.draw();
+    };
 
   deleteShape(shape: unknown) {
     this.currentShapes = this.currentShapes.filter((s) => s !== shape);
