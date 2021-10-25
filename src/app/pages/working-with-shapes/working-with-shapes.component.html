@@ -1,11 +1,15 @@
-<p>working-with-shapes works!</p>
-
-<ul *ngIf="shapeService?.shapes">
-  <li *ngFor="let shape of shapeService.shapes">
-    <app-add-shape [shape]="shape"></app-add-shape>
-  </li>
-</ul>
-
-<app-canvas></app-canvas>
-
-<app-shape-control-list></app-shape-control-list>
+<div class='layout-container'>
+<section class="column1">
+  <ul class="add-shape-controls" *ngIf="shapeService?.shapes">
+    <li *ngFor="let shape of shapeService.shapes">
+      <app-add-shape [shape]="shape"></app-add-shape>
+    </li>
+  </ul>
+</section>
+<section class="column2">
+  <app-canvas></app-canvas>
+</section>
+<section class="column3 controls-container">
+  <app-shape-control-list></app-shape-control-list>
+</section>
+</div>

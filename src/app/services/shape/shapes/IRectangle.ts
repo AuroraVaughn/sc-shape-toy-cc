@@ -31,23 +31,22 @@ export class Rectangle extends Shape {
     return this;
   }
 
-  detect(event: ICoordinates): false | this {
-    return this.detectXandY(event) && this;
-  }
-
-  detectXandY({ x, y }: ICoordinates) {
-    return (
+  detect({ x, y }: ICoordinates): false | this {
+    if (
       x >= this.x &&
       x <= this.x + this.width &&
       y >= this.y &&
       y <= this.y + this.height
-    );
+    ) {
+      return this;
+    }
+    return false;
   }
 
-  selected(ctx: CanvasRenderingContext2D){
+  selected(ctx: CanvasRenderingContext2D) {
     ctx.beginPath();
-    ctx.strokeStyle=ShapeDefaults.SelectBorderColor
-    ctx.lineWidth = ShapeDefaults.SelectBorderWidth
-    ctx.strokeRect(this.x - 5, this.y - 5, this.width + 10, this.height +10);
+    ctx.strokeStyle = ShapeDefaults.SelectBorderColor;
+    ctx.lineWidth = ShapeDefaults.SelectBorderWidth;
+    ctx.strokeRect(this.x - 5, this.y - 5, this.width + 10, this.height + 10);
   }
 }

@@ -11,6 +11,8 @@ export class Circle extends Shape {
   radian = 2 * Math.PI;
   shiftKeyPressed= false;
   radius!: number;
+
+
   constructor(radius?: number, x?: number, y?: number, fillColor?: string) {
     super(x || radius, y || radius, fillColor);
     this.radius = radius || ShapeDefaults.CircleRadius;

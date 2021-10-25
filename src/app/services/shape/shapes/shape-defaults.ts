@@ -1,6 +1,6 @@
 export enum ShapeDefaults {
-  XPos = 0,
-  YPos = 0,
+  XPos = 10,
+  YPos = 10,
   CircleRadius = 25,
   RectHeight = 50,
   RectWidth = 50,

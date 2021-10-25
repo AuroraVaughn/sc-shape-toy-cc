@@ -1,28 +1,48 @@
-<div [formGroup]="shapeForm">
-  <button (click)="canvasService.deleteShape(shape)">Delete</button>
-  <h2>{{ shape.name }}</h2>
-  <dt>Center X:</dt>
-  <dd>{{ shape.x }}</dd>
-  <dt>Center T:</dt>
-  <dd>{{ shape.y }}</dd>
-  <div *ngIf="shape.radius">
-    <label  *ngIf="shape.radius" for="radius">Radius:</label>
+<div  class="shape-control-card" [formGroup]="shapeForm">
+  <div class="row">
+    <button (click)="canvasService.deleteShape(shape)">Delete</button>
+    <h3>{{ shape.name }}</h3>
+  </div>
+  <div class="row">
+    <dt>Center X:</dt>
+    <dd>{{ shape.x }}</dd>
+  </div>
+  <div class="row">
+    <dt>Center T:</dt>
+    <dd>{{ shape.y }}</dd>
+  </div>
+  <div class="row" *ngIf="shape.radius">
+    <label *ngIf="shape.radius" for="radius">Radius:</label>
     <input
-      formControlName="radius"
       name="radius"
-      type="number"
+      type="range"
+      min="1"
+      [max]="canvasService.canvas.width / 2"
+      formControlName="radius"
     />
   </div>
-  <div *ngIf="shape.width">
+  <div class="row" *ngIf="shape.width">
     <label for="width">Width:</label>
-    <input name="width" type="number" formControlName="width" />
+    <input
+      name="width"
+      type="range"
+      min="1"
+      [max]="canvasService.canvas.width"
+      formControlName="width"
+    />
   </div>
-  <div *ngIf="shape.height">
+  <div class="row" *ngIf="shape.height">
     <label for="height">Height:</label>
-    <input name="height" type="number" formControlName="height" />
+    <input
+      name="height"
+      type="range"
+      min="1"
+      [max]="canvasService.canvas.height"
+      formControlName="height"
+    />
   </div>
-  <div >
+  <div class="row">
     <label for="color">Color</label>
-    <input name="color" type="color" formControlName="fillColor"  />
+    <input name="color" type="color" formControlName="fillColor" />
   </div>
 </div>

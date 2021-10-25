@@ -5,12 +5,12 @@ import { AnyShapeInstance } from '../shape/IShapeButton';
   providedIn: 'root',
 })
 export class CanvasService {
-  private canvas!: HTMLCanvasElement;
+  public canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
   private currentShapes = Array<AnyShapeInstance>();
   selectedShapes = Array<AnyShapeInstance>();
   private shiftKeyPressed = false;
-  constructor() {  }
+  constructor() {}
 
   /**
    * @description use in ngAfterViewInit to pass canvas element to service
@@ -23,37 +23,35 @@ export class CanvasService {
       e.preventDefault();
       this.addMouseDownEvents(e);
     });
-    window.addEventListener('keydown', (e) => {this.keyPressed(e)})
-    window.addEventListener('keyup', (e) => {this.keyReleased(e)})
+    window.addEventListener('keydown', (e) => {
+      this.keyPressed(e);
+    });
+    window.addEventListener('keyup', (e) => {
+      this.keyReleased(e);
+    });
     this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     return this.ctx;
   }
 
-  keyPressed=(e:KeyboardEvent)=>{
-    if(e.shiftKey) this.shiftKeyPressed = true;
-  }
-  keyReleased=(e:KeyboardEvent)=>{
-    if(e.shiftKey) this.shiftKeyPressed = false;
-  }
+  keyPressed = (e: KeyboardEvent) => {
+    if (e.shiftKey) this.shiftKeyPressed = true;
+  };
+  keyReleased = (e: KeyboardEvent) => {
+    if (e.shiftKey) this.shiftKeyPressed = false;
+  };
 
   addMouseDownEvents(event: MouseEvent) {
-    this.canvas.addEventListener(
-      'mouseup',
-      this.removeListenersOnMouseUp
-    );
+    this.canvas.addEventListener('mouseup', this.removeListenersOnMouseUp);
     if (this.selectedShapes.length) {
       this.canvas.addEventListener('mousemove', this.moveSelected);
     }
   }
 
-  removeListenersOnMouseUp=()=>{
-    console.log('up')
+  removeListenersOnMouseUp = () => {
+    console.log('up');
     this.canvas.removeEventListener('mousemove', this.moveSelected);
-    this.canvas.removeEventListener(
-      'mouseup',
-      this.removeListenersOnMouseUp
-    );
-  }
+    this.canvas.removeEventListener('mouseup', this.removeListenersOnMouseUp);
+  };
   /**
    * @description adds shape to state and makes call to redraw canvas
    * @param shape {AnyShapeInstance}
@@ -80,15 +78,15 @@ export class CanvasService {
     );
   }
 
-  getMousePos=(e: MouseEvent): ICoordinates =>{
+  getMousePos = (e: MouseEvent): ICoordinates => {
     const boundary = this.canvas.getBoundingClientRect();
     return {
       x: e.clientX - boundary.left,
       y: e.clientY - boundary.top,
     };
-  }
-  checkClick=(e: MouseEvent): false | AnyShapeInstance=> {
-    e.preventDefault()
+  };
+  checkClick = (e: MouseEvent): false | AnyShapeInstance => {
+    e.preventDefault();
     if (this.currentShapes.length === 0) return false;
 
     const click: ICoordinates = this.getMousePos(e);
@@ -99,30 +97,35 @@ export class CanvasService {
       if (shape.detect(click)) return shape;
     }
     return false;
-  }
+  };
 
-  selectOneShape=(e: MouseEvent)=> {
-    e.preventDefault()
+  selectOneShape = (e: MouseEvent) => {
+    e.preventDefault();
     const clickedShape = this.checkClick(e);
-    if (clickedShape && this.shiftKeyPressed){
-      this.selectedShapes.push(clickedShape)
-    }
-    else if(clickedShape) {
+    if (clickedShape && this.shiftKeyPressed) {
+      this.selectedShapes.push(clickedShape);
+    } else if (clickedShape) {
       this.selectedShapes = [clickedShape];
       clickedShape.selected(this.ctx);
     } else {
       this.selectedShapes = [];
     }
     this.draw();
-  }
+  };
 
-  moveSelected=(e: MouseEvent)=> {
-    e.preventDefault()
+  moveSelected = (e: MouseEvent) => {
+    e.preventDefault();
 
     this.selectedShapes.forEach((shape) => {
       shape.x += e.movementX;
       shape.y += e.movementY;
     });
+    this.draw();
+  };
+
+  deleteShape(shape: unknown) {
+    this.currentShapes = this.currentShapes.filter((s) => s !== shape);
+    this.selectedShapes = this.selectedShapes.filter((s) => s !== shape);
     this.draw();
   }
 

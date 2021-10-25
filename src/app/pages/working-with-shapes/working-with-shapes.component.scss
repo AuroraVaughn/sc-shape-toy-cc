@@ -1,0 +1,14 @@
+.add-shape-controls{
+  max-width: fit-content;
+}
+
+.layout-container{
+  display: grid;
+  grid-template-columns: 200px auto 300px
+}
+
+.controls-container{
+  border: var(--borer-value);
+  overflow-y: scroll;
+  max-height: 900px;
+}
