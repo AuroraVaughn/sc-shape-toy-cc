@@ -50,4 +50,3 @@ This is probably where this solution falls down some what. While the performance
 I think the amount of state is healthy for what it's doing now, but if undo/redo funcationality is added it could become a memory hog. I would consider using a front end database or even local storage to chunk sections/individual past states. 
 
 This is my first singificant work with canvas's api, so unfortunately I don't know what I don't know about it's quirks when it comes to performance. Please let me know if I made any blunders or accidentally sly moves!
-
