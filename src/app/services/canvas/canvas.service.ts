@@ -116,7 +116,6 @@ export class CanvasService implements OnDestroy {
 
     moveSelected = (e: MouseEvent) => {
       e.preventDefault();
-      const mouse = this.getMousePosistion(e);
       this.selectedShapes.forEach((shape) => {
         // TODO: Fix this to work in chrome. movement is bugged
         shape.x += e.movementX;
