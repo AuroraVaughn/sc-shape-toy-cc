@@ -1,5 +1,5 @@
 <div [formGroup]="shapeForm">
-  <button>Delete</button>
+  <button (click)="canvasService.deleteShape(shape)">Delete</button>
   <h2>{{ shape.name }}</h2>
   <dt>Center X:</dt>
   <dd>{{ shape.x }}</dd>

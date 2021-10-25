@@ -12,6 +12,7 @@ import { AnyShapeInstance } from 'src/app/services/shape/IShapeButton';
 })
 export class ShapeControlComponent implements OnInit {
   @Input() shape!: any
+
   shapeForm: FormGroup = new FormGroup({})
   subscriptions = Array<Subscription> ()
   constructor(public canvasService: CanvasService, public shapeService: ShapeService) { }
@@ -27,5 +28,11 @@ export class ShapeControlComponent implements OnInit {
     }
     this.canvasService.draw()
   }
+
+  deleteShape(){
+
+  }
+
+
 
 }
