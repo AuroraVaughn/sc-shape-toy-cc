@@ -1,4 +1,4 @@
-interface ICoordinates{
-  x: number,
-  y: number
+interface ICoordinates {
+  x: number;
+  y: number;
 }

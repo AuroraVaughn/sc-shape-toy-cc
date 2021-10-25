@@ -3,7 +3,6 @@ export type AnyShapeInstance = Rectangle | Circle;
 
 export type AnyShapeType = typeof Rectangle | typeof Circle;
 
-
 export interface IShapeButton {
   type: AnyShapeType;
   name: string;

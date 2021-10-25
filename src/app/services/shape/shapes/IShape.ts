@@ -12,7 +12,7 @@ export interface IShape {
  *
  */
 export abstract class Shape {
-  abstract name: ShapeNames
+  abstract name: ShapeNames;
   public x: number;
   public y: number;
   public fillColor: string = ShapeDefaults.FillColor;
@@ -34,13 +34,12 @@ export abstract class Shape {
    * @description detects if a set of coordinates are inside of the shape
    * @param {ICoordinates} coordinates {x, y}
    */
-  abstract detect(coordinates:ICoordinates): this | false
+  abstract detect(coordinates: ICoordinates): this | false;
 
   /**
    * @description creates outline for the selected shape
    *  generally done by creating a larger /stroke/ version of the shape
    * @param {CanvasRenderingContext2D} ctx
    */
-  abstract selected(ctx: CanvasRenderingContext2D):void
-
+  abstract selected(ctx: CanvasRenderingContext2D): void;
 }

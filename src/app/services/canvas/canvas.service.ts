@@ -1,17 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AnyShapeInstance } from '../shape/IShapeButton';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CanvasService {
+export class CanvasService implements OnDestroy {
   public canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
   private currentShapes = Array<AnyShapeInstance>();
   selectedShapes = Array<AnyShapeInstance>();
   private shiftKeyPressed = false;
-  constructor() {}
+  constructor() {
+    window.addEventListener('keydown', this.setShift);
+    window.addEventListener('keyup', this.setShift);
+  }
 
+  ngOnDestroy() {
+    window.removeEventListener('keydown', this.setShift);
+    window.removeEventListener('keyup', this.setShift);
+  }
   /**
    * @description use in ngAfterViewInit to pass canvas element to service
    * @param canvas {{HTMLCanvasElement}}
@@ -23,21 +30,13 @@ export class CanvasService {
       e.preventDefault();
       this.addMouseDownEvents(e);
     });
-    window.addEventListener('keydown', (e) => {
-      this.keyPressed(e);
-    });
-    window.addEventListener('keyup', (e) => {
-      this.keyReleased(e);
-    });
+
     this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     return this.ctx;
   }
 
-  keyPressed = (e: KeyboardEvent) => {
-    if (e.shiftKey) this.shiftKeyPressed = true;
-  };
-  keyReleased = (e: KeyboardEvent) => {
-    if (e.shiftKey) this.shiftKeyPressed = false;
+  setShift = (e: KeyboardEvent) => {
+    this.shiftKeyPressed = e.shiftKey;
   };
 
   addMouseDownEvents(event: MouseEvent) {
@@ -48,7 +47,6 @@ export class CanvasService {
   }
 
   removeListenersOnMouseUp = () => {
-    console.log('up');
     this.canvas.removeEventListener('mousemove', this.moveSelected);
     this.canvas.removeEventListener('mouseup', this.removeListenersOnMouseUp);
   };
@@ -78,7 +76,7 @@ export class CanvasService {
     );
   }
 
-  getMousePos = (e: MouseEvent): ICoordinates => {
+  getMousePosistion = (e: MouseEvent): ICoordinates => {
     const boundary = this.canvas.getBoundingClientRect();
     return {
       x: e.clientX - boundary.left,
@@ -89,7 +87,7 @@ export class CanvasService {
     e.preventDefault();
     if (this.currentShapes.length === 0) return false;
 
-    const click: ICoordinates = this.getMousePos(e);
+    const click: ICoordinates = this.getMousePosistion(e);
 
     for (let i = this.currentShapes.length - 1; i >= 0; i--) {
       const shape = this.currentShapes[i];
@@ -103,7 +101,10 @@ export class CanvasService {
     e.preventDefault();
     const clickedShape = this.checkClick(e);
     if (clickedShape && this.shiftKeyPressed) {
-      this.selectedShapes.push(clickedShape);
+      const notSelected = !this.selectedShapes.find((s) => s === clickedShape);
+      if (notSelected) {
+        this.selectedShapes.push(clickedShape);
+      }
     } else if (clickedShape) {
       this.selectedShapes = [clickedShape];
       clickedShape.selected(this.ctx);
@@ -115,8 +116,10 @@ export class CanvasService {
 
   moveSelected = (e: MouseEvent) => {
     e.preventDefault();
-
+    const mouse = this.getMousePosistion(e);
+    console.log(e);
     this.selectedShapes.forEach((shape) => {
+      // TODO: Fix this to work in chrome. movement is bugged
       shape.x += e.movementX;
       shape.y += e.movementY;
     });

@@ -1,13 +1,13 @@
-.add-shape-controls{
+.add-shape-controls {
   max-width: fit-content;
 }
 
-.layout-container{
+.layout-container {
   display: grid;
-  grid-template-columns: 200px auto 300px
+  grid-template-columns: 200px auto 300px;
 }
 
-.controls-container{
+.controls-container {
   border: var(--borer-value);
   overflow-y: scroll;
   max-height: 900px;

@@ -17,14 +17,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     WorkingWithShapesComponent,
     AddShapeComponent,
     ShapeControlComponent,
-    ShapeControlListComponent
+    ShapeControlListComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

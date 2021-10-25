@@ -9,9 +9,8 @@ interface ICircle extends IShape {
 export class Circle extends Shape {
   name = ShapeNames.Circle;
   radian = 2 * Math.PI;
-  shiftKeyPressed= false;
+  shiftKeyPressed = false;
   radius!: number;
-
 
   constructor(radius?: number, x?: number, y?: number, fillColor?: string) {
     super(x || radius, y || radius, fillColor);
@@ -34,9 +33,9 @@ export class Circle extends Shape {
   }
 
   detect({ x, y }: ICoordinates) {
-    const a = x - this.x
-    const b = y - this.y
-    const distanceToPoint =  Math.sqrt( a*a + b*b )
+    const a = x - this.x;
+    const b = y - this.y;
+    const distanceToPoint = Math.sqrt(a * a + b * b);
 
     if (distanceToPoint <= this.radius) return this;
     else return false;
@@ -44,8 +43,8 @@ export class Circle extends Shape {
 
   selected(ctx: CanvasRenderingContext2D) {
     ctx.arc(this.x, this.y, this.radius + 5, 0, this.radian, false);
-    ctx.strokeStyle = ShapeDefaults.SelectBorderColor
-    ctx.lineWidth = ShapeDefaults.SelectBorderWidth
-    ctx.stroke()
+    ctx.strokeStyle = ShapeDefaults.SelectBorderColor;
+    ctx.lineWidth = ShapeDefaults.SelectBorderWidth;
+    ctx.stroke();
   }
 }
