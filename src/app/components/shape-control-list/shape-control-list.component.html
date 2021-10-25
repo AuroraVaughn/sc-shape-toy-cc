@@ -1,0 +1,8 @@
+<div>
+  <ul *ngIf="canvasService?.selectedShapes">
+    <li *ngFor="let shape of canvasService.selectedShapes">
+      <app-shape-control [shape]="shape"></app-shape-control>
+    </li>
+  </ul>
+
+</div>

@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CanvasService } from 'src/app/services/canvas';
+import { AnyShapeInstance } from 'src/app/services/shape/IShapeButton';
 
 @Component({
-  selector: 'app-shape-control',
+  selector: '[shape] app-shape-control',
   templateUrl: './shape-control.component.html',
   styleUrls: ['./shape-control.component.scss']
 })
 export class ShapeControlComponent implements OnInit {
-
-  constructor() { }
+  @Input() shape!: AnyShapeInstance
+  constructor(public canvasService: CanvasService) { }
 
   ngOnInit(): void {
   }
