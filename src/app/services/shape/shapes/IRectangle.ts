@@ -1,5 +1,5 @@
 import { IShape, Shape } from './IShape';
-import { ShapeDefaults } from './shape-defaults';
+import { ShapeDefaults, ShapeNames } from './shape-defaults';
 
 export interface IRectangle extends IShape {
   width: number;
@@ -7,7 +7,7 @@ export interface IRectangle extends IShape {
 }
 
 export class Rectangle extends Shape {
-  name = 'rectangle';
+  name = ShapeNames.Rectangle;
 
   constructor(
     public x: number = ShapeDefaults.XPos,

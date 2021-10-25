@@ -8,7 +8,7 @@ export class CanvasService {
   private canvas!: HTMLCanvasElement;
   private ctx!: CanvasRenderingContext2D;
   private currentShapes = Array<AnyShapeInstance>();
-  private selectedShapes = Array<AnyShapeInstance>();
+  selectedShapes = Array<AnyShapeInstance>();
   private shiftKeyPressed = false;
   constructor() {  }
 

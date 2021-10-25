@@ -1,4 +1,4 @@
-import { ShapeDefaults } from './shape-defaults';
+import { ShapeDefaults, ShapeNames } from './shape-defaults';
 
 export interface IShape {
   name: string;
@@ -7,6 +7,7 @@ export interface IShape {
   fillColor: string;
 }
 export abstract class Shape {
+  abstract name: ShapeNames
   public x: number;
   public y: number;
   public fillColor: string = ShapeDefaults.FillColor;

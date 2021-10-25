@@ -8,3 +8,7 @@ export enum ShapeDefaults {
   SelectBorderColor= '#00b2ffbd',
   SelectBorderWidth = 4
 }
+export enum ShapeNames {
+  Rectangle ='rectangle',
+  Circle = 'circle'
+}

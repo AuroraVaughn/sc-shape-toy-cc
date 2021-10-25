@@ -1,14 +1,14 @@
 import { HostListener } from '@angular/core';
 import { IShape, Shape } from './IShape';
-import { ShapeDefaults } from './shape-defaults';
+import { ShapeDefaults, ShapeNames } from './shape-defaults';
 
 interface ICircle extends IShape {
   radius: number;
 }
 
 export class Circle extends Shape {
+  name = ShapeNames.Circle;
   radian = 2 * Math.PI;
-  name = 'circle';
   shiftKeyPressed= false;
   radius!: number;
   constructor(radius?: number, x?: number, y?: number, fillColor?: string) {
