@@ -1,2 +1,9 @@
 <p>working-with-shapes works!</p>
+
+<ul *ngIf="shapeService?.shapes">
+  <li *ngFor="let shape of shapeService.shapes">
+    <app-add-shape [shape]="shape"></app-add-shape>
+  </li>
+</ul>
+
 <app-canvas></app-canvas>

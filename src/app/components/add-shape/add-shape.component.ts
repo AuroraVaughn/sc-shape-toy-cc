@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CanvasService } from 'src/app/services/canvas';
+import { Component, Input, OnInit } from '@angular/core';
+import { ShapeService } from 'src/app/services/shape';
+import { IShapeButton } from 'src/app/services/shape/IShapeButton';
 
 @Component({
   selector: 'app-add-shape',
@@ -7,9 +8,8 @@ import { CanvasService } from 'src/app/services/canvas';
   styleUrls: ['./add-shape.component.scss'],
 })
 export class AddShapeComponent implements OnInit {
-  constructor(canvasService: CanvasService) {}
+  @Input() shape!: IShapeButton
+  constructor(public shapeService: ShapeService) {}
 
   ngOnInit(): void {}
-
-  addShape() {}
 }

@@ -1,8 +1,10 @@
 export enum ShapeDefaults {
   XPos = 0,
   YPos = 0,
-  CircleRadius = 50,
+  CircleRadius = 25,
   RectHeight = 50,
   RectWidth = 50,
-  FillColor = "red"
+  FillColor = "red",
+  SelectBorderColor= '#00b2ffbd',
+  SelectBorderWidth = 4
 }
